@@ -106,7 +106,7 @@ function _execScript(scriptName, data, cb) {
  *  parses the api results. pretty simple, but it gets at most needs.
  * @param {*} results
  */
-export function handleDataApiReponse(results) {
+export function handleDataApiResponse(results) {
   const { messages, response } = results;
   const code = messages[0].code;
   if (code !== "0" && code !== "401") {
