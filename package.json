@@ -1,6 +1,6 @@
 {
   "name": "fm-webviewer-fetch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/fm-webviewer-fetch.cjs.js",
   "module": "dist/fm-webviewer-fetch.esm.js",
