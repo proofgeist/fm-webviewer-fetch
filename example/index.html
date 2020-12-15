@@ -1,0 +1,58 @@
+<html>
+  <script src="../dist/fm-webviewer-fetch.umd.js" crossorigin></script>
+
+  <script>
+    //
+    try {
+      //used when merging in initial properties from FileMaker
+      window.localStorage.setItem("initialProps", __FM_PROPS__);
+    } catch (e) {}
+
+    //used when sending properties from FM via Script
+    // should only be called once
+    window.setInitialProps = function (props) {
+      window.localStorage.setItem("initialProps", props);
+    };
+    //logging of webDirect refreshes, useful for debugging
+    window.onWebdInternalRefresh = () => {
+      console.log("webd refresh");
+    };
+  </script>
+
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+  <body>
+    <h1>fmFetch Example</h1>
+    <h3>Field Data Fetched from FileMaker</h3>
+    <div id="fieldId"></div>
+    <br />
+    <h3>Layout Names Fetched From FileMaker</h3>
+    <ul id="layouts"></ul>
+    <button onclick="getDataFromFM()" type="button" class="btn btn-primary">
+      Fetch Data
+    </button>
+  </body>
+  <script>
+    function getDataFromFM() {
+      // Runs GetSimpleResult Script in FileMaker
+      fmWebviewerFetch.fetch("GetSimpleResult").then(r => {
+        // now we have the result returned from the script
+        console.log(r);
+        let fieldId = document.getElementById("fieldId");
+        fieldId.innerHTML = r.FirstName;
+        let layoutUl = document.getElementById("layouts");
+        layoutUl.innerHTML = ""; //wipe it if it has already happened
+        let layouts = r.LayoutNames;
+        layouts.map(l => {
+          let li = document.createElement("li");
+          li.innerText = l;
+          layoutUl.appendChild(li);
+        });
+      });
+    }
+  </script>
+</html>

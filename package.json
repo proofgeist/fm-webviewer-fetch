@@ -1,0 +1,33 @@
+{
+  "name": "fm-webviewer-fetch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/fm-webviewer-fetch.cjs.js",
+  "module": "dist/fm-webviewer-fetch.esm.js",
+  "browser": "dist/fm-webviewer-fetch.umd.js",
+  "dependencies": {
+    "uuid": "^8.3.2",
+    "debug": "^4.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "jsdoc-to-markdown": "^6.0.1",
+    "rollup-plugin-node-polyfills": "^0.2.1"
+  },
+  "scripts": {
+    "docs": "jsdoc2md src/main.js > api.md",
+    "watch": "rollup -c --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geistinteractive/fm-webviewer-fetch.git"
+  },
+  "author": "Todd Geist",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geistinteractive/fm-webviewer-fetch/issues"
+  },
+  "homepage": "https://github.com/geistinteractive/fm-webviewer-fetch#readme"
+}
