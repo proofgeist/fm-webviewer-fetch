@@ -42,7 +42,7 @@ export const globalSettings = {
    * just trying to hack in support
    * @param {function} the debug function
    */
-  setDebug
+  setDebug,
 };
 
 /**
@@ -58,7 +58,7 @@ export function fetch(scriptName, data, callback) {
     return _execScript(scriptName, data, callback);
   } else {
     return new Promise((resolve, reject) => {
-      _execScript(scriptName, data, result => {
+      _execScript(scriptName, data, (result) => {
         resolve(result);
       });
     });
@@ -97,7 +97,7 @@ function _execScript(scriptName, data, cb) {
   cbs[fetchId] = cb;
   const param = {
     data,
-    callback: { fetchId, fn: "handleFmWVFetchCallback", webViewerName }
+    callback: { fetchId, fn: "handleFmWVFetchCallback", webViewerName },
   };
   callFMScript(scriptName, param);
 }
@@ -128,6 +128,29 @@ export function callFMScript(scriptName, data) {
   } catch (e) {}
   try {
     window.FileMaker.PerformScript(scriptName, data);
+  } catch (e) {
+    if (!window.FileMaker) {
+      throw new Error(
+        `Could not call script, '${scriptName}'. 'window.FileMaker' was not available at the time this function was called.`
+      );
+    }
+    throw e;
+  }
+}
+
+/**
+ * calls a FileMaker Script without a callback or a promise using the new Options
+ * @param {string} scriptName
+ * @param {object} data
+ * @param {number} optionNumber
+ 
+ */
+export function callFMScriptWithOption(scriptName, data, option) {
+  try {
+    data = JSON.stringify(data);
+  } catch (e) {}
+  try {
+    window.FileMaker.PerformScriptWithOption(scriptName, data, option);
   } catch (e) {
     if (!window.FileMaker) {
       throw new Error(
