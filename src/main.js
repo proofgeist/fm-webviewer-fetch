@@ -142,6 +142,8 @@ export function callFMScript(scriptName, data) {
  * calls a FileMaker Script without a callback or a promise using the new Options
  * @param {string} scriptName
  * @param {object} data
+ * @param {number} optionNumber
+ 
  */
 export function callFMScriptWithOption(scriptName, data, option) {
   try {
