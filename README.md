@@ -1,5 +1,7 @@
 # fm-webviewer-fetch
 
+## Sponsored by (Proof+Geist)[https://www.proofgeist.com/]
+
 ## Usage
 
 You can load it directly from the unpkg cdn
