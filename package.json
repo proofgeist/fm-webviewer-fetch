@@ -7,13 +7,13 @@
   "browser": "dist/fm-webviewer-fetch.umd.js",
   "dependencies": {
     "uuid": "^8.3.2",
-    "debug": "^4.3.1"
+    "debug": "^4.3.4"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^3.1.1",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.1",
-    "jsdoc-to-markdown": "^6.0.1",
+    "@rollup/plugin-alias": "^3.1.9",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "jsdoc-to-markdown": "^7.1.1",
     "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "scripts": {
