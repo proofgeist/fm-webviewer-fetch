@@ -1,6 +1,6 @@
 # fm-webviewer-fetch
 
-## Sponsored by (Proof+Geist)[https://www.proofgeist.com/]
+## Sponsored by [Proof+Geist](https://www.proofgeist.com/)
 
 ## Usage
 
