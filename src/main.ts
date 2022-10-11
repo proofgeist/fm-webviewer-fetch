@@ -28,10 +28,10 @@ export const globalSettings = {
  * @param scriptName the name of the script to call. The script does have to follow conventions (see docs)
  * @param data optional script parameter, it can also just take a string
  */
-export function fmFetch(
+export function fmFetch<T = unknown>(
   scriptName: string,
   data: string | object
-): Promise<unknown>;
+): Promise<T>;
 export function fmFetch(
   scriptName: string,
   data: string | object,
@@ -108,15 +108,27 @@ export function handleDataApiResponse(results: any) {
 
 /**
  * calls a FileMaker Script without a callback or a promise
- * @param scriptName
- * @param data
  */
-export function callFMScript(scriptName: string, data?: string | object) {
+export function callFMScript(
+  scriptName: string,
+  data: any,
+  option: FMScriptOption
+): void;
+export function callFMScript(scriptName: string, data?: any): void;
+export function callFMScript(
+  scriptName: string,
+  data?: any,
+  option?: FMScriptOption
+): void {
   try {
     if (typeof data !== "string") data = JSON.stringify(data);
   } catch (e) {}
   try {
-    window.FileMaker.PerformScript(scriptName, data);
+    if (option) {
+      window.FileMaker.PerformScriptWithOption(scriptName, data, option);
+    } else {
+      window.FileMaker.PerformScript(scriptName, data);
+    }
   } catch (e) {
     if (!window.FileMaker) {
       throw new Error(
@@ -129,25 +141,14 @@ export function callFMScript(scriptName: string, data?: string | object) {
 
 /**
  * calls a FileMaker Script without a callback or a promise using the new Options
+ * @deprecated use callFMScript instead
  */
 export function callFMScriptWithOption(
   scriptName: string,
   data: string | object,
   option: FMScriptOption
 ) {
-  try {
-    data = JSON.stringify(data);
-  } catch (e) {}
-  try {
-    window.FileMaker.PerformScriptWithOption(scriptName, data, option);
-  } catch (e) {
-    if (!window.FileMaker) {
-      throw new Error(
-        `Could not call script, '${scriptName}'. 'window.FileMaker' was not available at the time this function was called.`
-      );
-    }
-    throw e;
-  }
+  callFMScript(scriptName, data, option);
 }
 
 export enum FMScriptOption {
