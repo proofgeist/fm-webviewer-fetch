@@ -1,12 +1,12 @@
 import { v4 } from "uuid";
 
-let webViewerName;
+let webViewerName: string;
 /**
  * @private
  * set the name of the WebViewer to use for all fetches
  * @param {string} name the Layout Object Name of the FileMaker WebViewer to callback too
  */
-function setWebViewerName(name) {
+function setWebViewerName(name: string) {
   webViewerName = name;
 }
 
@@ -15,16 +15,16 @@ function setWebViewerName(name) {
  * silliness around debug and rollup
  * just trying to hack in support
  */
-let _dbg = undefined;
-function debug() {
-  if (_dbg) return _dbg(arguments);
+let _dbg: any = undefined;
+function debug(...args: any[]) {
+  if (_dbg) return _dbg(args);
 }
 /**
  * @private
  * set your debug instance
  * @param {function} debug
  */
-function setDebug(debug) {
+function setDebug(debug: any) {
   _dbg = debug;
 }
 /**
@@ -53,7 +53,11 @@ export const globalSettings = {
  * @param {function} [callback] optional callback function
  * @returns {Promise} if no callback is passed it will return a Promise
  */
-export function fetch(scriptName, data, callback) {
+export function fetch(
+  scriptName: string,
+  data: string | object,
+  callback: () => void
+) {
   if (callback) {
     return _execScript(scriptName, data, callback);
   } else {
@@ -65,8 +69,8 @@ export function fetch(scriptName, data, callback) {
   }
 }
 
-const cbs = {};
-window.handleFmWVFetchCallback = function (data, fetchId) {
+const cbs: Record<string, any> = {};
+window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
   setTimeout(() => {
     debug("fetchId $s returning", fetchId);
     const cb = cbs[fetchId];
@@ -90,7 +94,11 @@ window.handleFmWVFetchCallback = function (data, fetchId) {
  * @param {object} data
  * @param {function} cb
  */
-function _execScript(scriptName, data, cb) {
+function _execScript(
+  scriptName: string,
+  data: any,
+  cb: (...args: any) => void
+) {
   debug("executing script $s", scriptName);
   debug(data);
   const fetchId = v4();
@@ -106,7 +114,7 @@ function _execScript(scriptName, data, cb) {
  *  parses the api results. pretty simple, but it gets at most needs.
  * @param {*} results
  */
-export function handleDataApiResponse(results) {
+export function handleDataApiResponse(results: any) {
   const { messages, response } = results;
   const code = messages[0].code;
   if (code !== "0" && code !== "401") {
@@ -122,9 +130,9 @@ export function handleDataApiResponse(results) {
  * @param {string} scriptName
  * @param {object} data
  */
-export function callFMScript(scriptName, data) {
+export function callFMScript(scriptName: string, data?: string | object) {
   try {
-    data = JSON.stringify(data);
+    if (typeof data !== "string") data = JSON.stringify(data);
   } catch (e) {}
   try {
     window.FileMaker.PerformScript(scriptName, data);
@@ -143,9 +151,12 @@ export function callFMScript(scriptName, data) {
  * @param {string} scriptName
  * @param {object} data
  * @param {number} optionNumber
- 
  */
-export function callFMScriptWithOption(scriptName, data, option) {
+export function callFMScriptWithOption(
+  scriptName: string,
+  data: string | object,
+  option: FMScriptOption
+) {
   try {
     data = JSON.stringify(data);
   } catch (e) {}
@@ -159,4 +170,13 @@ export function callFMScriptWithOption(scriptName, data, option) {
     }
     throw e;
   }
+}
+
+export enum FMScriptOption {
+  CONTINUE,
+  HALT,
+  EXIT,
+  RESUME,
+  PAUSE,
+  SUSPEND_AND_RESUME,
 }
