@@ -1,8 +1,9 @@
 {
   "name": "fm-webviewer-fetch",
   "version": "2.0.0",
-  "description": "",
+  "description": "A utility to fetch data from FileMaker webviewer",
   "main": "dist/main.js",
+  "private": false,
   "dependencies": {
     "uuid": "^8.3.2"
   },
@@ -27,5 +28,13 @@
   "bugs": {
     "url": "https://github.com/proofgeist/fm-webviewer-fetch/issues"
   },
-  "homepage": "https://github.com/proofgeist/fm-webviewer-fetch#readme"
+  "homepage": "https://github.com/proofgeist/fm-webviewer-fetch#readme",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "filemaker",
+    "proofgeist",
+    "webviewer"
+  ]
 }

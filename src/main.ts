@@ -27,18 +27,28 @@ export const globalSettings = {
  *
  * @param scriptName the name of the script to call. The script does have to follow conventions (see docs)
  * @param data optional script parameter, it can also just take a string
- * @param callback optional callback function
- * @returns {Promise} if no callback is passed it will return a Promise
  */
+export function fmFetch(
+  scriptName: string,
+  data: string | object
+): Promise<unknown>;
+export function fmFetch(
+  scriptName: string,
+  data: string | object,
+  /**
+   * @param cb callback function to call when the script is done
+   */
+  callback: () => void
+): void;
 export function fmFetch(
   scriptName: string,
   data: string | object,
   callback?: () => void
-): void | Promise<any> {
+) {
   if (callback) {
     return _execScript(scriptName, data, callback);
   } else {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       _execScript(scriptName, data, (result) => {
         resolve(result);
       });
@@ -65,9 +75,6 @@ window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
 
 /**
  * @private
- * @param scriptName
- * @param data
- * @param cb
  */
 function _execScript(
   scriptName: string,
@@ -84,8 +91,9 @@ function _execScript(
 }
 
 /**
- *  parses the api results. pretty simple, but it gets at most needs.
+ * parses the api results. pretty simple, but it gets at most needs.
  * @param results
+ * @deprecated a future version will use @proofgeist/fmdapi package instead
  */
 export function handleDataApiResponse(results: any) {
   const { messages, response } = results;
@@ -121,9 +129,6 @@ export function callFMScript(scriptName: string, data?: string | object) {
 
 /**
  * calls a FileMaker Script without a callback or a promise using the new Options
- * @param scriptName
- * @param data
- * @param optionNumber
  */
 export function callFMScriptWithOption(
   scriptName: string,
