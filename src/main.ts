@@ -4,29 +4,12 @@ let webViewerName: string;
 /**
  * @private
  * set the name of the WebViewer to use for all fetches
- * @param {string} name the Layout Object Name of the FileMaker WebViewer to callback too
+ * @param name the Layout Object Name of the FileMaker WebViewer to callback too
  */
 function setWebViewerName(name: string) {
   webViewerName = name;
 }
 
-/**
- * @private
- * silliness around debug and rollup
- * just trying to hack in support
- */
-let _dbg: any = undefined;
-function debug(...args: any[]) {
-  if (_dbg) return _dbg(args);
-}
-/**
- * @private
- * set your debug instance
- * @param {function} debug
- */
-function setDebug(debug: any) {
-  _dbg = debug;
-}
 /**
  * globalSettings
  */
@@ -34,30 +17,24 @@ export const globalSettings = {
   /**
    *
    * set the name of the WebViewer to use for all fetches
-   * @param {string} name the Layout Object Name of the FileMaker WebViewer to callback too
+   * @param name the Layout Object Name of the FileMaker WebViewer to callback too
    */
   setWebViewerName,
-  /**
-   * silliness around debug and rollup
-   * just trying to hack in support
-   * @param {function} the debug function
-   */
-  setDebug,
 };
 
 /**
  * Call a script in FileMaker, and get a response from the script either as a Promise or through a callback
  *
- * @param {string} scriptName the name of the script to call. The script does have to follow conventions (see docs)
- * @param {object} [parameter] optional script parameter, it can also just take a string
- * @param {function} [callback] optional callback function
+ * @param scriptName the name of the script to call. The script does have to follow conventions (see docs)
+ * @param data optional script parameter, it can also just take a string
+ * @param callback optional callback function
  * @returns {Promise} if no callback is passed it will return a Promise
  */
-export function fetch(
+export function fmFetch(
   scriptName: string,
   data: string | object,
-  callback: () => void
-) {
+  callback?: () => void
+): void | Promise<any> {
   if (callback) {
     return _execScript(scriptName, data, callback);
   } else {
@@ -72,7 +49,6 @@ export function fetch(
 const cbs: Record<string, any> = {};
 window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
   setTimeout(() => {
-    debug("fetchId $s returning", fetchId);
     const cb = cbs[fetchId];
     delete cbs[fetchId];
     if (!cb) {
@@ -82,7 +58,6 @@ window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
     try {
       data = JSON.parse(data);
     } catch (e) {}
-    debug("result", data);
     cb(data);
   }, 1);
   return true;
@@ -90,17 +65,15 @@ window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
 
 /**
  * @private
- * @param {string} scriptName
- * @param {object} data
- * @param {function} cb
+ * @param scriptName
+ * @param data
+ * @param cb
  */
 function _execScript(
   scriptName: string,
   data: any,
   cb: (...args: any) => void
 ) {
-  debug("executing script $s", scriptName);
-  debug(data);
   const fetchId = v4();
   cbs[fetchId] = cb;
   const param = {
@@ -112,7 +85,7 @@ function _execScript(
 
 /**
  *  parses the api results. pretty simple, but it gets at most needs.
- * @param {*} results
+ * @param results
  */
 export function handleDataApiResponse(results: any) {
   const { messages, response } = results;
@@ -127,8 +100,8 @@ export function handleDataApiResponse(results: any) {
 
 /**
  * calls a FileMaker Script without a callback or a promise
- * @param {string} scriptName
- * @param {object} data
+ * @param scriptName
+ * @param data
  */
 export function callFMScript(scriptName: string, data?: string | object) {
   try {
@@ -148,9 +121,9 @@ export function callFMScript(scriptName: string, data?: string | object) {
 
 /**
  * calls a FileMaker Script without a callback or a promise using the new Options
- * @param {string} scriptName
- * @param {object} data
- * @param {number} optionNumber
+ * @param scriptName
+ * @param data
+ * @param optionNumber
  */
 export function callFMScriptWithOption(
   scriptName: string,
