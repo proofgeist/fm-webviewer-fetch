@@ -35,7 +35,7 @@ globalSettings
 
 #### Defined in
 
-[main.ts:16](https://github.com/proofgeist/fm-webviewer-fetch/blob/63a2e28/src/main.ts#L16)
+[main.ts:16](https://github.com/proofgeist/fm-webviewer-fetch/blob/df4d8ef/src/main.ts#L16)
 
 ## Functions
 
@@ -58,7 +58,7 @@ calls a FileMaker Script without a callback or a promise
 
 #### Defined in
 
-[main.ts:106](https://github.com/proofgeist/fm-webviewer-fetch/blob/63a2e28/src/main.ts#L106)
+[main.ts:106](https://github.com/proofgeist/fm-webviewer-fetch/blob/df4d8ef/src/main.ts#L106)
 
 ___
 
@@ -82,7 +82,7 @@ calls a FileMaker Script without a callback or a promise using the new Options
 
 #### Defined in
 
-[main.ts:128](https://github.com/proofgeist/fm-webviewer-fetch/blob/63a2e28/src/main.ts#L128)
+[main.ts:128](https://github.com/proofgeist/fm-webviewer-fetch/blob/df4d8ef/src/main.ts#L128)
 
 ___
 
@@ -108,7 +108,7 @@ if no callback is passed it will return a Promise
 
 #### Defined in
 
-[main.ts:33](https://github.com/proofgeist/fm-webviewer-fetch/blob/63a2e28/src/main.ts#L33)
+[main.ts:33](https://github.com/proofgeist/fm-webviewer-fetch/blob/df4d8ef/src/main.ts#L33)
 
 ___
 
@@ -130,4 +130,4 @@ parses the api results. pretty simple, but it gets at most needs.
 
 #### Defined in
 
-[main.ts:90](https://github.com/proofgeist/fm-webviewer-fetch/blob/63a2e28/src/main.ts#L90)
+[main.ts:90](https://github.com/proofgeist/fm-webviewer-fetch/blob/df4d8ef/src/main.ts#L90)
