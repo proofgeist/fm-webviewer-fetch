@@ -56,14 +56,14 @@ export function fmFetch(
   }
 }
 
-const cbs: Record<string, any> = {};
+const cbs: Record<string, (arg0?: any) => void> = {};
 window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
   setTimeout(() => {
     const cb = cbs[fetchId];
     delete cbs[fetchId];
     if (!cb) {
       console.error("Callback is missing for fetchId: " + fetchId);
-      return;
+      return false;
     }
     try {
       data = JSON.parse(data);
@@ -76,11 +76,7 @@ window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
 /**
  * @private
  */
-function _execScript(
-  scriptName: string,
-  data: any,
-  cb: (...args: any) => void
-) {
+function _execScript(scriptName: string, data: any, cb: (arg0?: any) => void) {
   const fetchId = v4();
   cbs[fetchId] = cb;
   const param = {
@@ -123,19 +119,17 @@ export function callFMScript(
   try {
     if (typeof data !== "string") data = JSON.stringify(data);
   } catch (e) {}
-  try {
-    if (option) {
-      window.FileMaker.PerformScriptWithOption(scriptName, data, option);
-    } else {
-      window.FileMaker.PerformScript(scriptName, data);
-    }
-  } catch (e) {
-    if (!window.FileMaker) {
-      throw new Error(
-        `Could not call script, '${scriptName}'. 'window.FileMaker' was not available at the time this function was called.`
-      );
-    }
-    throw e;
+
+  if (!window.FileMaker) {
+    throw new Error(
+      `Could not call script, '${scriptName}'. 'window.FileMaker' was not available at the time this function was called.`
+    );
+  }
+
+  if (option) {
+    window.FileMaker.PerformScriptWithOption(scriptName, data, option);
+  } else {
+    window.FileMaker.PerformScript(scriptName, data);
   }
 }
 
