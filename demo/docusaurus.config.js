@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "fm-webviewer-fetch",
   tagline: "Easy promise-based FileMaker data",
-  url: "https://fm-webviewer-fetch.vercel.app",
+  url: "https://fm-webviewer-fetch.proofgeist.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
