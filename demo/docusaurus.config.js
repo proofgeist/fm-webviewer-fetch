@@ -54,12 +54,6 @@ const config = {
         title: "fm-webviewer-fetch",
         items: [
           {
-            type: "doc",
-            docId: "index",
-            position: "left",
-            label: "Docs",
-          },
-          {
             position: "right",
             href: "/fmFetch-demo.fmp12",
             label: "Download Demo File",
