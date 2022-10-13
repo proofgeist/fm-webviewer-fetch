@@ -60,6 +60,12 @@ const config = {
             label: "Docs",
           },
           {
+            position: "right",
+            href: "/fmFetch-demo.fmp12",
+            label: "Download Demo File",
+            className: "btn",
+          },
+          {
             href: "https://github.com/proofgeist/fm-webviewer-fetch",
             label: "GitHub",
             position: "right",
