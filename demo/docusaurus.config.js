@@ -31,16 +31,10 @@ const config = {
     [
       "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-        },
-        blog: {
-          showReadingTime: true,
+          routeBasePath: "/",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -49,29 +43,26 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+
+        pages: false,
+      },
     ],
   ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       navbar: {
-        title: "My Site",
-        logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
-        },
+        title: "fm-webviewer-fetch",
         items: [
           {
             type: "doc",
-            docId: "intro",
+            docId: "index",
             position: "left",
-            label: "Tutorial",
+            label: "Docs",
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            href: "https://github.com/proofgeist/fm-webviewer-fetch",
             label: "GitHub",
             position: "right",
           },
@@ -84,11 +75,24 @@ const config = {
             title: "Links",
             items: [
               {
-                label: "GitHub",
-                href: "https://github.com/proofgeist/fm-webviewer-fetch",
+                label: "Proof+Geist",
+                href: "https://proofgeist.com",
               },
               {
-                label: "Proof+Geist",
+                label: "JS Dev Kit for FileMaker Developers",
+                href: "https://github.com/proofgeist/js-dev-environment",
+              },
+            ],
+          },
+          {
+            title: "Other Packages",
+            items: [
+              {
+                label: "@proofgeist/fmdapi",
+                href: "https://github.com/proofgeist/fmdapi",
+              },
+              {
+                label: "types/filemaker-webviewer",
                 href: "https://proofgeist.com",
               },
             ],
@@ -99,7 +103,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-    }),
+    },
 };
 
 module.exports = config;

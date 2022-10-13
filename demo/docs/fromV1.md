@@ -4,22 +4,30 @@ sidebar_position: 2
 
 # Upgrading from v1
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Version 2.0 has a few breaking changes, but upgrading is easy.
 
-## Purpose
+### New package name
+The package has moved from `fm-webviewer-fetch` to `@proofgeist/fm-webviewer-fetch`. If you are using the old pacakge name, you will need to remove it and install the new package.
 
-The goal of this package is to make it easy to work with FileMaker data when building a custom webviewer integration. `fm-webviewer-fetch` works **only inside of webviewer** and allows you to interact with your FileMaker solution via local scripts.
+### Changed fetch to fmFetch
+The `fetch` function has been renamed to `fmFetch` to avoid conflicts with the native browser `fetch` function. If you are using the old `fetch` function, simply rename it to `fmFetch` in your import statement, or choose another name if you prefer.
 
-For web-based applications where you're looking to interact with the Data API, check out the [fmdapi](https://github.com/proofgeist/fmdapi) package instead.
-
-## Prerequisites
-
-## Installation
-
-```bash
-npm install @proofgeist/fm-webviewer-fetch
-```
-```bash
-yarn add @proofgeist/fm-webviewer-fetch
+```ts
+// for backwards compatibility with existing code
+import { fmFetch as fetch } from '@proofgeist/fm-webviewer-fetch'
 ```
 
+
+### Deprecated `callFmScriptWithOption`
+You can now use the `callFMScript` function with or without an option as the 3rd parameter.
+
+```ts
+// old way
+import { callFMScriptWithOption } from 'fm-webviewer-fetch'
+callFMScriptWithOption('scriptName', 'scriptParam', 3)
+
+// new way
+import { callFMScript, FMScriptOption } from '@proofgeist/fm-webviewer-fetch'
+callFMScript('scriptName', 'scriptParam', FMScriptOption.RESUME)
+```
+Note that the old function will still work, but may be removed in a future release.

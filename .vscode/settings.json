@@ -1,3 +1,7 @@
 {
-  "liveServer.settings.port": 5001
+  "liveServer.settings.port": 5001,
+  "cSpell.enabled": true,
+  "cSpell.words": [
+    "webviewer"
+  ]
 }
