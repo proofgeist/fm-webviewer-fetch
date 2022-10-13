@@ -1,4 +1,4 @@
-import { FMScriptOption } from "./src/main";
+import { FMScriptOption } from "./main";
 
 export {};
 

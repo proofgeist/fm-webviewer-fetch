@@ -17,10 +17,4 @@
   "include": [
     "src"
   ],
-  "typedocOptions": {
-    "entryPoints": [
-      "src/main.ts"
-    ],
-    "out": "docs"
-  }
 }

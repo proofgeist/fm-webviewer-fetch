@@ -38,7 +38,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://pr.new/github.com/proofgeist/fm-webviewer-fetch/tree/main",
+            "https://github.com/proofgeist/fm-webviewer-fetch/tree/main/demo",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
