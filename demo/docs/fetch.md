@@ -18,12 +18,12 @@ In Javascript...
 import { fmFetch } from '@proofgeist/fm-webviewer-fetch'
 
 async function getData() {
-    const result = await fmFetch("Simple Script")
+    const result = await fmFetch("GetSimpleResult")
 }
 ```
 
 In FileMaker...  
-Script: `Simple Script`
+Script: `GetSimpleResult`
 ```
 # Required properties
 Set Variable [ $json ; Value: Get ( ScriptParameter ) ] 
@@ -59,7 +59,7 @@ Set Variable [ $data ; Value: JSONGetElement ( $json ; "data" ) ]
 You can also use a callback function instead of a promise by passing a callback function as the third parameter to the fmFetch function.
 ```ts
 function getData() {
-    fmFetch("Simple Script", {}, (result) => {
+    fmFetch("GetSimpleResult", {}, (result) => {
         console.log(result);
     })
 }
@@ -73,7 +73,7 @@ type Result = {
 }
 
 async function getData() {
-    const result = await fmFetch<Result>("Simple Script")
+    const result = await fmFetch<Result>("GetSimpleResult")
 }
 ```
 **WARNING:** This type is not validated with the actual FileMaker script result. You may want to consider validating the data that is returned from FileMaker with a runtime validation library such as [zod](https://zod.dev). This technique is most powerful when combined with the `Execute FileMaker Data API` script step and automatic type generation found in the [@proofgeist/fmdapi](https://github.com/proofgeist/fmdapi) package. Learn more.

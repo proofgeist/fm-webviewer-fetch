@@ -1740,6 +1740,13 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
+"@proofgeist/fm-webviewer-fetch@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@proofgeist/fm-webviewer-fetch/-/fm-webviewer-fetch-2.0.1.tgz#151fd729716f731960526efc5f264d39151f667f"
+  integrity sha512-sgbkPhEtbHGdrJaXzmKH2BihnMZnaSoQFP3IrKuURPIroVGhA72xfzy2YFPHb9z650CqVV3DVVkYw443Sv5Pwg==
+  dependencies:
+    uuid "^8.3.2"
+
 "@sideway/address@^4.1.3":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.4.tgz#03dccebc6ea47fdc226f7d3d1ad512955d4783f0"
