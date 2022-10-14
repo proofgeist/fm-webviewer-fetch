@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
 
 import typescript from "@rollup/plugin-typescript";
-import { resolve } from "path";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import { resolve as pathResolve } from "path";
 import { typescriptPaths } from "rollup-plugin-typescript-paths";
 
 export default defineConfig({
@@ -10,7 +12,7 @@ export default defineConfig({
     alias: [
       {
         find: "~",
-        replacement: resolve(__dirname, "./src"),
+        replacement: pathResolve(__dirname, "./src"),
       },
     ],
   },
@@ -21,8 +23,9 @@ export default defineConfig({
     manifest: true,
     minify: true,
     reportCompressedSize: true,
+
     lib: {
-      entry: resolve(__dirname, "src/main.ts"),
+      entry: pathResolve(__dirname, "src/main.ts"),
       fileName: "main",
       name: "fmFetch",
       formats: ["es", "cjs", "umd"],
@@ -30,6 +33,7 @@ export default defineConfig({
     rollupOptions: {
       external: [],
       plugins: [
+        resolve({ browser: true }),
         typescriptPaths({
           preserveExtensions: true,
         }),
@@ -39,6 +43,7 @@ export default defineConfig({
           declaration: true,
           outDir: "dist",
         }),
+        commonjs(),
       ],
     },
   },

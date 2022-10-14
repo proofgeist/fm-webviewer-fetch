@@ -57,21 +57,23 @@ export function fmFetch(
 }
 
 const cbs: Record<string, (arg0?: any) => void> = {};
-window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
-  setTimeout(() => {
-    const cb = cbs[fetchId];
-    delete cbs[fetchId];
-    if (!cb) {
-      console.error("Callback is missing for fetchId: " + fetchId);
-      return false;
-    }
-    try {
-      data = JSON.parse(data);
-    } catch (e) {}
-    cb(data);
-  }, 1);
-  return true;
-};
+setTimeout(() => {
+  window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
+    setTimeout(() => {
+      const cb = cbs[fetchId];
+      delete cbs[fetchId];
+      if (!cb) {
+        console.error("Callback is missing for fetchId: " + fetchId);
+        return false;
+      }
+      try {
+        data = JSON.parse(data);
+      } catch (e) {}
+      cb(data);
+    }, 1);
+    return true;
+  };
+}, 1);
 
 /**
  * @private
