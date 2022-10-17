@@ -7,7 +7,7 @@ sidebar_position: 2
 Version 2.0 has a few breaking changes, but upgrading is easy.
 
 ### New package name
-The package has moved from `fm-webviewer-fetch` to `@proofgeist/fm-webviewer-fetch`. If you are using the old pacakge name, you will need to remove it and install the new package.
+The package has moved from `fm-webviewer-fetch` to `@proofgeist/fm-webviewer-fetch`. If you are using the old package name, you will need to remove it and install the new package.
 
 ### Changed fetch to fmFetch
 The `fetch` function has been renamed to `fmFetch` to avoid conflicts with the native browser `fetch` function. If you are using the old `fetch` function, simply rename it to `fmFetch` in your import statement, or choose another name if you prefer.

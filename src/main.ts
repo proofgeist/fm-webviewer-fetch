@@ -57,7 +57,8 @@ export function fmFetch(
 }
 
 const cbs: Record<string, (arg0?: any) => void> = {};
-setTimeout(() => {
+
+if (typeof window !== "undefined") {
   window.handleFmWVFetchCallback = function (data: any, fetchId: string) {
     setTimeout(() => {
       const cb = cbs[fetchId];
@@ -73,7 +74,7 @@ setTimeout(() => {
     }, 1);
     return true;
   };
-}, 1);
+}
 
 /**
  * @private
