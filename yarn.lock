@@ -57,6 +57,11 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.0.tgz#5fb2e536c1ae9bf35366eed879e827fa59ca41c2"
   integrity sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==
 
+"@types/filemaker-webviewer@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/filemaker-webviewer/-/filemaker-webviewer-1.0.0.tgz#d82ba3eb0cdb99d650c8cc64b70e9084edecf1a5"
+  integrity sha512-vkAB0KabhFbg8iGSHFRYV/smLzcdYbhFNxtL48ymoD/YMdpcLlk/cNcey3U8sDoRYNMCTqW/bqUI3S6YLPe7nw==
+
 "@types/node@^18.8.5":
   version "18.8.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.5.tgz#6a31f820c1077c3f8ce44f9e203e68a176e8f59e"

@@ -149,10 +149,10 @@ export function callFMScriptWithOption(
 }
 
 export enum FMScriptOption {
-  CONTINUE,
-  HALT,
-  EXIT,
-  RESUME,
-  PAUSE,
-  SUSPEND_AND_RESUME,
+  CONTINUE = "0",
+  HALT = "1",
+  EXIT = "2",
+  RESUME = "3",
+  PAUSE = "4",
+  SUSPEND_AND_RESUME = "5",
 }
