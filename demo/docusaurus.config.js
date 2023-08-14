@@ -55,7 +55,7 @@ const config = {
         items: [
           {
             position: "right",
-            href: "/fmFetch-demo.fmp12",
+            href: "https://github.com/proofgeist/fm-webviewer-fetch/raw/main/demo/static/fmFetch-demo.fmp12",
             label: "Download Demo File",
             className: "btn",
           },
