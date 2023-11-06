@@ -108,19 +108,20 @@ export function handleDataApiResponse(results: any) {
 /**
  * calls a FileMaker Script without a callback or a promise
  */
-export function callFMScript(
+export function callFMScript<ScriptParams extends string | Record<any, any> = any>(
   scriptName: string,
-  data: any,
+  data: ScriptParams,
   option: FMScriptOption
 ): void;
-export function callFMScript(scriptName: string, data?: any): void;
-export function callFMScript(
+export function callFMScript<ScriptParams extends string | Record<any, any> = any>(scriptName: string, data?: ScriptParams): void;
+export function callFMScript<ScriptParams extends string | Record<any, any> = any>(
   scriptName: string,
-  data?: any,
+  data?: ScriptParams,
   option?: FMScriptOption
 ): void {
+  let params = data as string; 
   try {
-    if (typeof data !== "string") data = JSON.stringify(data);
+    if (typeof data !== "string") params = JSON.stringify(data);
   } catch (e) {}
 
   if (!window.FileMaker) {
@@ -130,9 +131,9 @@ export function callFMScript(
   }
 
   if (option) {
-    window.FileMaker.PerformScriptWithOption(scriptName, data, option);
+    window.FileMaker.PerformScriptWithOption(scriptName, params, option);
   } else {
-    window.FileMaker.PerformScript(scriptName, data);
+    window.FileMaker.PerformScript(scriptName, params);
   }
 }
 
