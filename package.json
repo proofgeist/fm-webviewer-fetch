@@ -1,6 +1,6 @@
 {
   "name": "@proofgeist/fm-webviewer-fetch",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "A utility to fetch data from FileMaker webviewer",
   "type": "module",
   "files": [
