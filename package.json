@@ -1,16 +1,20 @@
 {
   "name": "@proofgeist/fm-webviewer-fetch",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A utility to fetch data from FileMaker webviewer",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/index.umd.js",
-  "browser": "./dist/index.umd.js",
-  "module": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "main": "./dist/main.umd.js",
+  "browser": "./dist/main.umd.js",
+  "module": "./dist/main.js",
+  "typings": "./dist/main.d.ts",
   "private": false,
+  "exports": {
+    ".": "./dist/index.js",
+    "./adapter": "./dist/adapter.js"
+  },
   "dependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
     "uuid": "^10.0.0"
@@ -34,7 +38,7 @@
     "build": "tsc && vite build",
     "build:watch": "tsc && vite build --watch",
     "dev": "vite",
-    "release": "pnpm build && changeset publish --access public"  
+    "release": "pnpm build && changeset publish --access public"
   },
   "repository": {
     "type": "git",

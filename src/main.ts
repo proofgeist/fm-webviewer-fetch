@@ -108,18 +108,16 @@ export function handleDataApiResponse(results: any) {
 /**
  * calls a FileMaker Script without a callback or a promise
  */
-export function callFMScript<ScriptParams extends string | Record<any, any> = any>(
-  scriptName: string,
-  data: ScriptParams,
-  option: FMScriptOption
-): void;
-export function callFMScript<ScriptParams extends string | Record<any, any> = any>(scriptName: string, data?: ScriptParams): void;
-export function callFMScript<ScriptParams extends string | Record<any, any> = any>(
-  scriptName: string,
-  data?: ScriptParams,
-  option?: FMScriptOption
-): void {
-  let params = data as string; 
+export function callFMScript<
+  ScriptParams extends string | Record<any, any> = any,
+>(scriptName: string, data: ScriptParams, option: FMScriptOption): void;
+export function callFMScript<
+  ScriptParams extends string | Record<any, any> = any,
+>(scriptName: string, data?: ScriptParams): void;
+export function callFMScript<
+  ScriptParams extends string | Record<any, any> = any,
+>(scriptName: string, data?: ScriptParams, option?: FMScriptOption): void {
+  let params = data as string;
   try {
     if (typeof data !== "string") params = JSON.stringify(data);
   } catch (e) {}
