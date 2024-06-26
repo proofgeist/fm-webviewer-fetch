@@ -1,19 +1,20 @@
 {
   "name": "@proofgeist/fm-webviewer-fetch",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "A utility to fetch data from FileMaker webviewer",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "./dist/main.umd.js",
-  "browser": "./dist/main.umd.js",
   "module": "./dist/main.js",
   "typings": "./dist/main.d.ts",
   "private": false,
   "exports": {
     ".": "./dist/main.js",
-    "./adapter": "./dist/adapter.js"
+    "./adapter": {
+      "import": "./dist/adapter.js",
+      "types": "./dist/adapter.d.ts"
+    }
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",

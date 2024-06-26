@@ -25,10 +25,17 @@ export default defineConfig({
     reportCompressedSize: true,
 
     lib: {
-      entry: pathResolve(__dirname, "src/main.ts"),
-      fileName: "main",
+      entry: [
+        pathResolve(__dirname, "src/main.ts"),
+        pathResolve(__dirname, "src/adapter.ts"),
+      ],
+      fileName: (moduleFormat, fileName) => {
+        if (moduleFormat === "es") return `${fileName}.js`;
+        if (moduleFormat === "cjs") return `${fileName}.cjs`;
+        return `${fileName}.js`;
+      },
       name: "fmFetch",
-      formats: ["es", "cjs", "umd"],
+      formats: ["es", "cjs"],
     },
     rollupOptions: {
       external: [],
