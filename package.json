@@ -33,7 +33,8 @@
     "prepublishOnly": "tsc",
     "build": "tsc && vite build",
     "build:watch": "tsc && vite build --watch",
-    "dev": "vite"
+    "dev": "vite",
+    "release": "pnpm build && changeset publish --access public"  
   },
   "repository": {
     "type": "git",
