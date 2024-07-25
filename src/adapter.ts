@@ -42,6 +42,19 @@ export class WebViewerAdapter implements Adapter {
   }): Promise<unknown> => {
     const { action = "read", layout, body } = params;
 
+    if ("_offset" in body) {
+      Object.assign(body, { offset: body._offset });
+      delete body._offset;
+    }
+    if ("_limit" in body) {
+      Object.assign(body, { limit: body._limit });
+      delete body._limit;
+    }
+    if ("_sort" in body) {
+      Object.assign(body, { sort: body._sort });
+      delete body._sort;
+    }
+
     const resp = await fmFetch<RawFMResponse>(this.scriptName, {
       ...body,
       layouts: layout,
